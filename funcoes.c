@@ -2,12 +2,16 @@
 #include "estruturaPilha.h"
 
 struct Pilha pilha;
+struct Fila filha;
 
 //inicializarPilha possui complexidade O(1)
 void inicializarPilha() {
     pilha.topo = -1;
 }
-
+//inicializarFila possui complexidade O(1)
+void inicializarFila(){
+    filha.ponta = -1;
+}
 //empilhar possui complexidade O(1)
 void empilhar()  {
     int i;
@@ -102,11 +106,11 @@ void limparPilha(){
     }
     printf("Lista Limpa");
 }
-//void possui complexidade O(1)
+//void contarElementos possui complexidade O(1)
 void contarElementos(){
     printf("A pilha possui %d elementos", pilha.topo + 1);
 }
-//void possui complexidade O(n)
+//void somarElementos possui complexidade O(n)
 void somarElementos(){
     int cont;
     for(int i = 0; i <= pilha.topo; i++){
@@ -115,7 +119,7 @@ void somarElementos(){
     printf("A soma de todos os valores da pilha é %d", cont);
 
 }
-//void possui complexidade O(n)
+//void procurarElemento possui complexidade O(n)
 void procurarElemento(){
 
     int valor, cont = 0;
@@ -143,4 +147,58 @@ void procurarElemento(){
     }
     
 
+}
+//void transferirParaFila possui complexidade O(1)
+void transferirParaFila(){
+    if(pilha.topo == -1) {
+        printf("Pilha vazia! Não há elementos para transferir.\n");
+        return;
+    }
+    if(filha.ponta == TAM - 1) {
+        printf("Fila cheia! Não é possível transferir elementos.\n");
+        return;
+    }
+    else {
+            filha.ponta++;
+            filha.dados[filha.ponta] = pilha.dados[pilha.topo];
+            pilha.topo--;
+        }
+        printf("Elemento transferido da pilha para a fila.\n");
+    }
+//void mostrarFila possui complexidade O(n)
+void mostrarFila() {
+    if(filha.ponta == -1) {
+        printf("Fila vazia!\n");
+        return;
+    }
+    printf("Elementos na fila:\n");
+    for(int i = 0; i <= filha.ponta; i++) {
+        printf("%d\n", filha.dados[i]);
+    }
+}
+//void enfileirar possui complexidade O(1)
+void enfileirar() {
+    if(filha.ponta == TAM - 1) {
+        printf("Fila cheia! Não é possível adicionar elementos.\n");
+        return;
+    }
+    int valor;
+    printf("Digite o valor a ser enfileirado: ");
+    scanf("%d", &valor);
+    filha.ponta++;
+    filha.dados[filha.ponta] = valor;
+    printf("Elemento %d enfileirado com sucesso.\n", valor);
+}
+//void desenfileirar possui complexidade O(n)
+void desenfileirar() {
+    if(filha.ponta == -1) {
+        printf("Fila vazia! Não há elementos para remover.\n");
+        return;
+    }
+    int valorRemovido = filha.dados[0];
+    for(int i = 0; i < filha.ponta; i++) {
+        filha.dados[i] = filha.dados[i + 1];
+    }
+    filha.ponta--;
+    printf("Elemento %d desenfileirado com sucesso.\n", valorRemovido);
 }

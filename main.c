@@ -5,6 +5,7 @@ int main() {
     int opcao;
 
     inicializarPilha();
+    inicializarFila();
 
     do {
         printf("\n1 - Empilhar");
@@ -17,6 +18,10 @@ int main() {
         printf("\n8 - Contar elementos");
         printf("\n9 - Somar elementos");
         printf("\n10 - Procurar elemento");
+        printf("\n11 - Transferir para fila");
+        printf("\n12 - Mostrar fila");
+        printf("\n13 - Enfileirar");
+        printf("\n14 - Desenfileirar");
         printf("\nOpcao: ");
         scanf("%d", &opcao);
 
@@ -31,6 +36,10 @@ int main() {
             case 8: contarElementos(); break;
             case 9: somarElementos(); break;
             case 10: procurarElemento(); break;
+            case 11: transferirParaFila(); break;
+            case 12: mostrarFila(); break;
+            case 13: enfileirar(); break;
+            case 14: desenfileirar(); break;
             default: printf("Opcao invalida!\n");
         }
 
